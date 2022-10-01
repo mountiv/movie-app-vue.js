@@ -69,7 +69,7 @@ export default {
   border-radius: 5px;
   overflow: hidden;
   transition: all 0.2s ease;
-  height: 400px;
+  height: 500px;
 }
 .movie-item:hover {
   box-shadow: 0px 5px 30px rgba(0, 0, 0, 0.7);
@@ -88,7 +88,7 @@ export default {
 }
 .movie-info-wrap {
   padding: 20px 10px;
-  height: 100%;
+  width: 100%;
   opacity: 0;
   transition: all 0.2s ease;
   background-color: rgba(0, 0, 0, 0.7);
@@ -106,5 +106,41 @@ export default {
 }
 .movie-buttons {
   width: 100%;
+}
+
+@media (max-width: 1200px) {
+  .movie-item {
+    height: 400px;
+  }
+}
+@media (max-width: 768px) {
+  .movie-item {
+    height: 400px;
+  }
+}
+@media (max-width: 575px) {
+  .movie-item {
+    height: 700px;
+  }
+}
+@media (max-width: 450px) {
+  .movie-item {
+    height: 600px;
+  }
+}
+@media (max-width: 410px) {
+  .movie-item {
+    height: 550px;
+  }
+}
+@media (max-width: 360px) {
+  .movie-item {
+    height: 500px;
+  }
+}
+@media (max-width: 360px) {
+  .movie-item {
+    height: 490px;
+  }
 }
 </style>

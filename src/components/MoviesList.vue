@@ -4,7 +4,14 @@
       <h3 class="list-title">{{ listTitle }}</h3>
       <BRow>
         <template v-if="isExist">
-          <BCol cols="3" v-for="(movie, key) in list" :key="key">
+          <BCol
+            cols="12"
+            sm="6"
+            md="4"
+            lg="3"
+            v-for="(movie, key) in list"
+            :key="key"
+          >
             <MovieItem
               :movie="movie"
               @mouseover.native="onMouseOver(movie.Poster)"
@@ -102,10 +109,13 @@ export default {
   margin-bottom: 30px;
   color: #fff;
 }
-</style>
-
-<style>
 .movie-modal-body {
   padding: 0 !important;
+}
+
+@media (max-width: 360px) {
+  .list-title {
+    font-size: 40px;
+  }
 }
 </style>

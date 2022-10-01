@@ -53,7 +53,7 @@ export default {
   background-image: linear-gradient(
     45deg,
     rgba(0, 3, 38) 0%,
-    rgba(82, 15, 117) 100%
+    rgb(0, 0, 0) 100%
   );
 }
 </style>
