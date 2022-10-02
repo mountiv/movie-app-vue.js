@@ -183,4 +183,20 @@ export default {
   font-size: 24px;
   cursor: pointer;
 }
+
+@media (max-width: 992px) {
+  .movie-rating >>> .b-rating-star,
+  .movie-rating >>> .b-rating-value {
+    font-size: 1rem;
+    font-weight: 200;
+    padding: 0;
+  }
+  .movie-title {
+    font-size: 2.4rem;
+    font-weight: 300;
+  }
+  .movie-description {
+    font-size: 1rem;
+  }
+}
 </style>

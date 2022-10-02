@@ -2,7 +2,9 @@
   <header class="header">
     <BNavbar type="dark" class="navbar" variant="dark">
       <BContainer>
-        <BNavbarBrand href="#">MovieDB</BNavbarBrand>
+        <BNavbarBrand href="#">
+          <img src="../assets/img/Logo.svg" alt="" />
+        </BNavbarBrand>
         <BNavForm>
           <BFormInput
             class="mr-sm-2 search-input"
@@ -54,6 +56,10 @@ export default {
   background-color: rgba(0, 0, 0, 0.7) !important;
 }
 
+.form-inline {
+  display: flex;
+}
+
 .search-input {
   color: #fff;
   background: rgba(255, 255, 255, 0.1);
@@ -65,5 +71,8 @@ export default {
   color: #fff;
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(0, 0, 0, 0.6);
+}
+img {
+  height: 20px;
 }
 </style>
