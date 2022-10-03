@@ -56,6 +56,7 @@ const moviesStore = {
         const requests = moviesToFetch.map((id) => axios.get(`/?i=${id}`));
         const response = await Promise.all(requests);
         const movies = serializeResponse(response);
+        console.log(movies);
         commit(MOVIES, movies);
       } catch (err) {
         console.log(err);

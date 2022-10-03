@@ -5,15 +5,17 @@
       <BRow>
         <template v-if="isExist">
           <BCol
-            cols="12"
-            sm="6"
+            cols="6"
             md="4"
             lg="3"
-            v-for="(movie, key) in list"
+            v-for="(movie, key, id) in list"
             :key="key"
           >
             <MovieItem
               :movie="movie"
+              :id="id"
+              :currentPage="currentPage"
+              :PerPage="moviesPerPage"
               @mouseover.native="onMouseOver(movie.Poster)"
               @removeItem="onRemoveItem"
               @showModal="onShowMovieInfo"
@@ -80,7 +82,6 @@ export default {
     },
     onShowMovieInfo(id) {
       this.selectedMovieID = id;
-      console.log(this.selectedMovie);
       this.$bvModal.show(this.movieInfoModalID);
     },
     onCloseModal() {
@@ -89,12 +90,12 @@ export default {
     },
   },
   computed: {
-    ...mapGetters("movies", ["isSearch"]),
+    ...mapGetters("movies", ["isSearch", "currentPage", "moviesPerPage"]),
     isExist() {
       return Boolean(Object.keys(this.list).length);
     },
     listTitle() {
-      return this.isSearch ? "Search result" : "IMDB Top 250";
+      return this.isSearch ? "Search result" : "IMDB Top 250 Greatest movies";
     },
     selectedMovie() {
       return this.selectedMovieID ? this.list[this.selectedMovieID] : null;
@@ -113,9 +114,19 @@ export default {
   padding: 0 !important;
 }
 
-@media (max-width: 360px) {
+@media (max-width: 1000px) {
   .list-title {
     font-size: 40px;
+  }
+}
+@media (max-width: 800px) {
+  .list-title {
+    font-size: 30px;
+  }
+}
+@media (max-width: 600px) {
+  .list-title {
+    font-size: 20px;
   }
 }
 </style>

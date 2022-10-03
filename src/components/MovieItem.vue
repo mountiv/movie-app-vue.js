@@ -3,8 +3,19 @@
     <div class="movie-item-poster" :style="posterBg"></div>
     <div class="movie-info-wrap d-flex flex-column justify-content-between">
       <div class="movie-item-info">
-        <h3 class="movie-title">{{ movie.Title }}</h3>
-        <span class="movie-year">{{ movie.Year }}</span>
+        <h3 class="movie-title">
+          {{ movieId + "." }} {{ movie.Title }} ({{ movie.Year }})
+        </h3>
+        <div class="movies-rating">
+          <div class="movie-rating">
+            <span>IMDB: </span>
+            <span>{{ movie.Ratings[0].Value }}</span>
+          </div>
+          <div class="movie-rating">
+            <span>Tomatoes: </span>
+            <span>{{ movie.Ratings[1].Value }}</span>
+          </div>
+        </div>
       </div>
       <div class="movie-item-controls row no-gutters">
         <div class="col pr-2">
@@ -29,6 +40,11 @@
         </div>
       </div>
     </div>
+    <div class="movie-bottom-info">
+      <h3 class="movie-bottom-title">
+        {{ movieId + "." }} {{ movie.Title }} ({{ movie.Year }})
+      </h3>
+    </div>
   </div>
 </template>
 
@@ -40,8 +56,24 @@ export default {
       type: Object,
       required: true,
     },
+    id: {
+      type: Number,
+      required: true,
+    },
+    currentPage: {
+      type: Number,
+      required: true,
+    },
+    PerPage: {
+      type: Number,
+      required: true,
+    },
   },
   computed: {
+    movieId() {
+      console.log(this.movie.Ratings[0].Value);
+      return this.id + 1 + this.currentPage * this.PerPage - this.PerPage;
+    },
     posterBg() {
       return {
         "background-image": `url(${this.movie.Poster})`,
@@ -79,11 +111,19 @@ export default {
   position: absolute;
   top: 0;
   left: 0;
-  bottom: 0;
+  bottom: 40px;
   right: 0;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
+  z-index: -1;
+}
+.movie-bottom-info {
+  position: absolute;
+  height: 35px;
+  left: 0;
+  bottom: 0;
+  text-overflow: ellipsis;
   z-index: -1;
 }
 .movie-info-wrap {
@@ -97,8 +137,11 @@ export default {
   font-size: 20px;
   color: #fff;
 }
-.movie-year {
-  font-size: 14px;
+.movies-rating {
+  margin-bottom: 10px;
+}
+.movie-rating {
+  font-size: 12px;
   color: #fff;
 }
 .movie-item:hover .movie-info-wrap {
@@ -106,6 +149,10 @@ export default {
 }
 .movie-buttons {
   width: 100%;
+}
+.movie-bottom-title {
+  font-size: 14px;
+  color: #fff;
 }
 
 @media (max-width: 1200px) {
@@ -118,29 +165,30 @@ export default {
     height: 400px;
   }
 }
-@media (max-width: 575px) {
-  .movie-item {
-    height: 700px;
-  }
-}
-@media (max-width: 450px) {
-  .movie-item {
-    height: 600px;
-  }
-}
-@media (max-width: 410px) {
-  .movie-item {
-    height: 550px;
-  }
-}
-@media (max-width: 360px) {
+@media (max-width: 600px) {
   .movie-item {
     height: 500px;
   }
 }
-@media (max-width: 360px) {
+@media (max-width: 500px) {
   .movie-item {
-    height: 490px;
+    height: 450px;
+  }
+  .movie-bottom-info {
+    font-size: 12px;
+  }
+}
+@media (max-width: 450px) {
+  .movie-item {
+    height: 350px;
+  }
+}
+@media (max-width: 400px) {
+  .movie-bottom-info {
+    font-size: 10px;
+  }
+  .movie-item {
+    height: 300px;
   }
 }
 </style>
