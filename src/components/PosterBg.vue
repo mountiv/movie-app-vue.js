@@ -52,7 +52,7 @@ export default {
   opacity: 0.7;
   background-image: linear-gradient(
     45deg,
-    rgba(0, 3, 38) 0%,
+    rgb(20, 20, 20) 0%,
     rgb(0, 0, 0) 100%
   );
 }

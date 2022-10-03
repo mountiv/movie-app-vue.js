@@ -41,7 +41,11 @@
             /> </BModal
         ></BTab>
         <BTab title="Second">
-          <MoviesListTable />
+          <MoviesListTable
+            :list="list"
+            :currentPage="currentPage"
+            :PerPage="moviesPerPage"
+          />
         </BTab>
       </BTabs>
     </BContainer>
