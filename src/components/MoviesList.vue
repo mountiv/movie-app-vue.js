@@ -2,44 +2,54 @@
   <div>
     <BContainer>
       <h3 class="list-title">{{ listTitle }}</h3>
-      <BRow>
-        <template v-if="isExist">
-          <BCol
-            cols="6"
-            md="4"
-            lg="3"
-            v-for="(movie, key, id) in list"
-            :key="key"
+      <BTabs content-class="mt-3">
+        <BTab title="First" active>
+          <BRow>
+            <template v-if="isExist">
+              <BCol
+                cols="6"
+                md="4"
+                lg="3"
+                v-for="(movie, key, id) in list"
+                :key="key"
+              >
+                <MovieItem
+                  :movie="movie"
+                  :id="id"
+                  :currentPage="currentPage"
+                  :PerPage="moviesPerPage"
+                  @mouseover.native="onMouseOver(movie.Poster)"
+                  @removeItem="onRemoveItem"
+                  @showModal="onShowMovieInfo"
+                />
+              </BCol>
+            </template>
+            <template v-else>
+              <div>Empty List</div>
+            </template>
+          </BRow>
+          <BModal
+            body-class="movie-modal-body"
+            :id="movieInfoModalID"
+            size="xl"
+            hide-footer
+            hide-header
           >
-            <MovieItem
-              :movie="movie"
-              :id="id"
-              :currentPage="currentPage"
-              :PerPage="moviesPerPage"
-              @mouseover.native="onMouseOver(movie.Poster)"
-              @removeItem="onRemoveItem"
-              @showModal="onShowMovieInfo"
-            />
-          </BCol>
-        </template>
-        <template v-else>
-          <div>Empty List</div>
-        </template>
-      </BRow>
-      <BModal
-        body-class="movie-modal-body"
-        :id="movieInfoModalID"
-        size="xl"
-        hide-footer
-        hide-header
-      >
-        <ModalInfoContent :movie="selectedMovie" @closeModal="onCloseModal" />
-      </BModal>
+            <ModalInfoContent
+              :movie="selectedMovie"
+              @closeModal="onCloseModal"
+            /> </BModal
+        ></BTab>
+        <BTab title="Second">
+          <MoviesListTable />
+        </BTab>
+      </BTabs>
     </BContainer>
   </div>
 </template>
 
 <script>
+import MoviesListTable from "./MoviesListTable.vue";
 import MovieItem from "./MovieItem.vue";
 import { mapActions, mapGetters } from "vuex";
 import ModalInfoContent from "@/components/MovieInfoModalContent.vue";
@@ -57,6 +67,7 @@ export default {
     selectedMovieID: "",
   }),
   components: {
+    MoviesListTable,
     MovieItem,
     ModalInfoContent,
   },

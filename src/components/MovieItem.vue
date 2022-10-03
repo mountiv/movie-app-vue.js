@@ -71,7 +71,6 @@ export default {
   },
   computed: {
     movieId() {
-      console.log(this.movie.Ratings[0].Value);
       return this.id + 1 + this.currentPage * this.PerPage - this.PerPage;
     },
     posterBg() {
@@ -131,7 +130,7 @@ export default {
   width: 100%;
   opacity: 0;
   transition: all 0.2s ease;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: rgba(0, 0, 0, 0.9);
 }
 .movie-title {
   font-size: 20px;
