@@ -2,8 +2,13 @@
   <div>
     <BContainer>
       <h3 class="list-title">{{ listTitle }}</h3>
-      <BTabs content-class="mt-3">
-        <BTab title="First" active>
+      <BTabs active-nav-item-class="text-dark" content-class="mt-3 mb-3" lazy>
+        <BTab
+          title="Covers"
+          :title-link-class="'text-light'"
+          active
+          @click="onCoversClick"
+        >
           <BRow>
             <template v-if="isExist">
               <BCol
@@ -40,7 +45,11 @@
               @closeModal="onCloseModal"
             /> </BModal
         ></BTab>
-        <BTab title="Second">
+        <BTab
+          :title-link-class="'text-light'"
+          title="Table"
+          @click="onTableClick"
+        >
           <MoviesListTable
             :list="list"
             :currentPage="currentPage"
@@ -76,7 +85,11 @@ export default {
     ModalInfoContent,
   },
   methods: {
-    ...mapActions("movies", ["removeMovie"]),
+    ...mapActions("movies", [
+      "removeMovie",
+      "changeMoviesPerPage",
+      "changeCurrentPage",
+    ]),
     ...mapActions(["showNotify"]),
     onMouseOver(poster) {
       this.$emit("changePoster", poster);
@@ -102,6 +115,14 @@ export default {
     onCloseModal() {
       this.selectedMovieID = null;
       this.$bvModal.hide(this.movieInfoModalID);
+    },
+    onCoversClick() {
+      this.changeCurrentPage(1);
+      this.changeMoviesPerPage(12);
+    },
+    onTableClick() {
+      this.changeCurrentPage(1);
+      this.changeMoviesPerPage(50);
     },
   },
   computed: {
