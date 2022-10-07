@@ -24,7 +24,7 @@
             {{ movie.Ratings[2] ? movie.Ratings[2].Value : "-" }}
           </BCol>
           <BCollapse cols="12" :id="`${id}`" class="mt-2">
-            <BCard class="text-danger">
+            <BCard class="text-dark">
               <BRow no-gutters>
                 <BCol md="6">
                   <BCard-img
@@ -34,7 +34,7 @@
                   ></BCard-img>
                 </BCol>
                 <BCol md="6">
-                  <BCard-body title="Horizontal Card">
+                  <BCard-body :title="movie.Title">
                     <BCard-text>
                       This is a wider card with supporting text as a natural
                       lead-in to additional content. This content is a little
