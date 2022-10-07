@@ -13,7 +13,7 @@
           </div>
           <div class="movie-rating">
             <span>Tomatoes: </span>
-            <span>{{ movie.Ratings[1].Value }}</span>
+            <span>{{ movie.Ratings[1] ? movie.Ratings[1].Value : "-" }}</span>
           </div>
         </div>
       </div>

@@ -23,11 +23,28 @@
           <BCol cols="2">
             {{ movie.Ratings[2] ? movie.Ratings[2].Value : "-" }}
           </BCol>
-          <b-collapse cols="12" id="`${id}`" class="mt-2">
-            <b-card class="text-danger">
-              <p class="card-text">Collapse contents Here</p>
-            </b-card>
-          </b-collapse>
+          <BCollapse cols="12" :id="`${id}`" class="mt-2">
+            <BCard class="text-danger">
+              <BRow no-gutters>
+                <BCol md="6">
+                  <BCard-img
+                    :src="movie.Poster"
+                    alt="Image"
+                    class="rounded-0"
+                  ></BCard-img>
+                </BCol>
+                <BCol md="6">
+                  <BCard-body title="Horizontal Card">
+                    <BCard-text>
+                      This is a wider card with supporting text as a natural
+                      lead-in to additional content. This content is a little
+                      bit longer.
+                    </BCard-text>
+                  </BCard-body>
+                </BCol>
+              </BRow>
+            </BCard>
+          </BCollapse>
         </BRow>
       </div>
     </BContainer>
