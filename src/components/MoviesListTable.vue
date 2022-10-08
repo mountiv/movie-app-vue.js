@@ -8,12 +8,9 @@
         <BCol cols="2"> Metacritic </BCol>
       </BRow>
       <div v-for="(movie, key, id) in list" :key="key">
-        <BRow class="text-center movie-table-row">
+        <BRow class="text-center movie-table-row" v-b-toggle="`${id}`">
           <BCol class="text-start" cols="6">
-            <BButton
-              v-b-toggle="`${id}`"
-              class="text-white text-start"
-              variant="transparent"
+            <BButton class="text-white text-start" variant="transparent"
               >{{ id + movieId + "." }} {{ movie.Title }} ({{
                 movie.Year
               }})</BButton
@@ -32,6 +29,7 @@
                 <BCol md="3">
                   <BCard-img
                     :src="movie.Poster"
+                    @mouseover="onMouseOver(movie.Poster)"
                     alt="Image"
                     class="rounded-0"
                   ></BCard-img>
@@ -109,7 +107,12 @@ export default {
   },
   data: () => ({}),
   components: {},
-  methods: {},
+  methods: {
+    onMouseOver(poster) {
+      console.log(poster);
+      this.$emit("changeTablePoster", poster);
+    },
+  },
   computed: {
     movieId() {
       return 1 + this.currentPage * this.PerPage - this.PerPage;

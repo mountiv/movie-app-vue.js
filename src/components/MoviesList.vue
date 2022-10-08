@@ -54,6 +54,7 @@
             :list="list"
             :currentPage="currentPage"
             :PerPage="moviesPerPage"
+            @changeTablePoster="onMouseOver"
           />
         </BTab>
       </BTabs>
