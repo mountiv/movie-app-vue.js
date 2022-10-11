@@ -1,15 +1,15 @@
 <template>
-  <div class="movies-table">
-    <BContainer>
+  <div class="movies-table" :sticky-header="stickyHeader">
+    <BContainer sticky-header>
       <BRow class="text-center movies-table-header">
-        <BCol class="text-start" cols="6"> Title </BCol>
+        <BCol class="text-start title" cols="0" sm="6"> Title </BCol>
         <BCol cols="2"> IMDB </BCol>
         <BCol cols="2"> Tomatoes </BCol>
         <BCol cols="2"> Metacritic </BCol>
       </BRow>
       <div v-for="(movie, key, id) in list" :key="key">
         <BRow class="text-center movie-table-row" v-b-toggle="`${id}`">
-          <BCol class="text-start" cols="6">
+          <BCol class="text-start" cols="12" sm="6">
             <BButton class="text-white text-start" variant="transparent"
               >{{ id + movieId + "." }} {{ movie.Title }} ({{
                 movie.Year
@@ -89,6 +89,7 @@
 export default {
   name: "MoviesList",
   data: () => ({
+    stickyHeader: true,
     items: this.list,
   }),
   props: {
@@ -167,6 +168,20 @@ p {
   .movies-table-header {
     font-size: 10px;
     padding: 0;
+  }
+}
+@media (max-width: 576px) {
+  .movie-table-row {
+    justify-content: center;
+  }
+  .movies-table-header {
+    justify-content: center;
+  }
+  .title {
+    display: none;
+  }
+  .card-body {
+    padding: 0.5rem 0.5rem !important;
   }
 }
 </style>
